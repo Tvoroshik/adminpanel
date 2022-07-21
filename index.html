@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <TITLE>Панель управления</TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+    <!DOCTYPE HTML PUBLIC>
+    <HTML>
+
+    <HEAD>
+        <TITLE>Панель управления</TITLE>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="./img/favicon.svg" type=" image/svg+xml">
+
+        <link rel="stylesheet" type="text/css" href="./css/style_main.css" />
+        <link rel="stylesheet" type="text/css" href="./css/PopUp.css" />
+        <link href="./css/plagins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="./css/plagins/bootstrap/bootstrap-extended.css" rel="stylesheet" />
+
+        <script type="text/javascript" src="./js/popup.js"></script>
+        <script type="text/javascript" src="./js/script_main.js"></script>
+
+        <div id="overlay">
+            <div class="popup">
+                <div class="split left" , style="background-color: #181b22">
+                    <div class="centered">
+                        <section class="sign-in">
+                            <div class="container" , style="background-color: #373737">
+                                <div class="signin-content">
+                                    <div class="signin-form">
+                                        <h2 class="form-title" , style="color: #fff">Авторизация</h2>
+                                        <form method="POST" class="register-form" id="login-form">
+                                            <div class="form-group">
+                                                <span style=" color: #fff;
+                                                font-size: 110%;">Логин: </span>
+                                                <label for="your_name"><i
+                                                        class="zmdi zmdi-account material-icons-name"></i></label>
+                                                <input type="text" id="login" name="Логин" value="test">
+                                            </div>
+                                            <div class="form-group">
+                                                <span style=" color: #fff;
+                                                font-size: 110%;">Пароль: </span>
+                                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                                <input type="password" id="password" name="Пароль" value="1">
+                                                <span id="error"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" name="remember-me" id="remember-me"
+                                                    class="agree-term" />
+                                                <!-- <label for="remember-me"
+                                                    class="label-agree-term"><span><span></span></span>Запомнить
+                                                    меня</label>
+                                                //onclick="promptPassword()"
+                                                -->
+                                            </div>
+                                            <div class="form-group form-button">
+                                                <div id="login_password"><button class="custom-btn btn-7" type="button"
+                                                        onclick="promptPassword()"> Войти </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <p><a
+                                                href="mailto:info@itiasoft.ru&cc=mail@itiasoft.ru?body=Здравствуйте, у меня возник вопрос:">Забыли
+                                                пароль?</a></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="split right">
+                </div>
+            </div>
+        </div>
+
+        <div id="header">
+            <header class="top-header">
+                <div class="top-navbar-right ms-auto">
+                    <ul class="navbar-nav align-items-center">
+                        <li>
+                            <div class="brand">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </header>
+        </div>
+
+
+        <div id="content">
+            <div class="tree">
+                <TABLE border=0 height=100% align=left width=100%>
+                    <TR>
+                        <TD id="TD" width=10% align=left valign=top
+                            style="background-color:#373737;BORDER-RIGHT:0.1rem   solid #101426;">
+                            <ul id="tree" class="ztree" style="width:100%; overflow:hidden;"></ul>
+                        </TD>
+            </div>
+            <TD width=90% align=left valign=top>
+                <IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=NO width=100% frameborder="0"
+                    style="border: 5px solid #181b22"></IFRAME>
+            </TD>
+            </TR>
+            </TABLE>
+        </div>
+
+
+        <div id="footer">
+        </div>
+
+</body>
+
+</html>
