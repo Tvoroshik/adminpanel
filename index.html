@@ -549,6 +549,7 @@
         </h6>
         <div id="output"></div>
     </div>
+
     <script>
         var Year
         var date = new Date();
@@ -564,24 +565,13 @@
         }
 
         var zNodes = [
-            { id: 1, pId: 0, name: "[core] Basic elements", open: false },
-            { id: 101, pId: 1, name: "WebGl", file: "Pages/webgl/app/index" },
-            { id: 102, pId: 1, name: "Charts", file: "Pages/charts/index" },
-            { id: 103, pId: 1, name: "Example", file: "core/noline" },
-            { id: 104, pId: 1, name: "Example", file: "core/noicon" },
-            { id: 105, pId: 1, name: "Example", file: "core/custom_icon" },
-            { id: 106, pId: 1, name: "Example", file: "core/custom_iconSkin" },
+            { id: 1, pId: 0, name: "[core] Basic elements", open: false, iconSkin:"alarm", },
+            { id: 101, pId: 1, name: "WebGl", file: "Pages/webgl/app/index", iconSkin:"normal", },
+            { id: 102, pId: 1, name: "Charts", file: "Pages/charts/index", iconSkin:"normal", },
+            { id: 103, pId: 1, name: "Gauge", file: "Pages/gauge/index", iconSkin:"normal", },
 
-
-            { id: 2, pId: 0, name: "Example", open: false },
-            { id: 201, pId: 2, name: "Example", file: "excheck/checkbox" },
-            { id: 206, pId: 2, name: "Example", file: "excheck/checkbox_nocheck" },
-            { id: 207, pId: 2, name: "Example", file: "excheck/checkbox_chkDisabled" },
-            { id: 208, pId: 2, name: "Example", file: "excheck/checkbox_halfCheck" },
-            { id: 202, pId: 2, name: "Example", file: "excheck/checkbox_count" },
-            { id: 203, pId: 2, name: "Example", file: "excheck/checkbox_fun" },
-            { id: 204, pId: 2, name: "Example", file: "excheck/radio" },
-            { id: 209, pId: 2, name: "Example", file: "excheck/radio_nocheck" },
+            { id: 2, pId: 0, name: "Example", open: false, iconSkin:"alarm", },
+           
 
         ];
 
@@ -615,6 +605,58 @@
             document.getElementById('testIframe').src = "./admin/Profile/index.html";
         };
     </script>
+
+<style type="text/css">
+
+    .ztree li span.button.normal_ico_open {
+        margin-right: 2px;
+        background: url(img/icon/1.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+
+    .ztree li span.button.normal_ico_close {
+        margin-right: 2px;
+        background: url(img/icon/1.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+
+    .ztree li span.button.alarm_ico_open {
+        margin-right: 2px;
+        background: url(img/icon/2.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+
+    .ztree li span.button.alarm_ico_close {
+        margin-right: 2px;
+        background: url(img/icon/2.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+
+    .ztree li span.button.alarm_ico_docu {
+        margin-right: 2px;
+        background: url(img/icon/2.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+
+    .ztree li span.button.normal_ico_docu {
+        margin-right: 2px;
+        background: url(img/icon/1.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+
+    .ztree li span.button.model_ico_docu {
+        margin-right: 2px;
+        background: url(img/icon/4.png) no-repeat scroll 0 0 transparent;
+        vertical-align: top;
+        *vertical-align: middle
+    }
+</style>
 
     <script type="text/javascript" src="js/jquery.mmenu.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

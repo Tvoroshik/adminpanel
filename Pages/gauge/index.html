@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui">
+
+    <!-- jQuery library -->
+    <script src="jquery.min.js"></script>
+    <!-- FKPageTransitions Javascript file -->
+    <script src="fkpagetransitions.min.js"></script>
+    <!-- FKPageTransitions CSS file -->
+    <link href="fkpagetransitions.min.css" rel="stylesheet" />
+    <style type="text/css">
+        /* 基本 */
+        html,
+        body,
+        div,
+        span,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        i,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        button,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        .clear {
+            width: 100%;
+            height: 1px;
+            clear: both;
+            display: block;
+            overflow: hidden;
+        }
+
+        html,
+        body {
+            height: 95.6%;
+            width: 100%;
+            font-family: Helvetica, Tahoma, Arial, 'Microsoft YaHei', sans-serif;
+            background: #fff;
+            color: #51423d;
+        }
+
+        a {
+            color: #51423d;
+            text-decoration: none;
+        }
+
+        body {
+            background: #fff;
+        }
+
+        body,
+        html {
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+            color: #fff;
+            background: #181b22;
+            overflow: hidden;
+        }
+
+
+        .myfkpage {
+            height: 70%;
+            text-align: center;
+            font-size: 33px;
+        }
+
+        .gauge_style {
+            width: 65%;
+            height: 65%;
+            overflow: auto;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            font-size: 33px;
+        }
+
+        .gauge_style1 {
+            width: 80%;
+            height: 80%;
+            overflow: auto;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            font-size: 33px;
+        }
+    </style>
+    <script src="js/gauge.min.js"></script>
+    <script src="./moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0"></script>
+
+    <script src="./hammer.js"></script>
+    <script src="./chartjs-plugin-zoom.min.js"></script>
+
+
+    <link rel="stylesheet" href="./styleButton1.css" type="text/css">
+
+    <link rel="stylesheet" href="./iframe.css" type="text/css">
+    <link rel="stylesheet" href="https://snipp.ru/cdn/jqueryui/1.12.1/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="https://snipp.ru/cdn/jQuery-Timepicker-Addon/dist/jquery-ui-timepicker-addon.min.css"
+        type="text/css">
+
+
+    <script src="https://snipp.ru/cdn/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://snipp.ru/cdn/jQuery-Timepicker-Addon/dist/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="./localeDatepicker.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+    <ul class="myfkpage">
+        <li style="background: #373737">
+            <div class="first">
+                <div class="container2">
+                    <button class="custom-btn btn-7" onclick="fkpage.goToPrevSlide();">График</button>
+                    <button class="custom-btn btn-7" onclick="fkpage.goToNextSlide();">График</button>
+                </div>
+            </div>
+            <div class="container">
+
+                <div>
+                    <div class="Iframename"> Зона 3</div>
+                </div>
+            </div>
+            <div class="gauge_style">
+                <canvas id="gauge0"></canvas>
+                <canvas id="gauge1"></canvas>
+                <canvas id="gauge2"></canvas>
+            </div>
+
+        </li>
+        <!--<li style="background: #373737">
+            <div class="first">
+                <div class="container2">
+                    <button class="custom-btn btn-7" onclick="fkpage.goToPrevSlide();">Налево</button>
+                    <button class="custom-btn btn-7" onclick="fkpage.goToNextSlide();">Направо</button>
+                </div>
+            </div>
+            <div class="container">
+
+                <div>
+                    <div class="Iframename"> Зона 3</div>
+                </div>
+            </div>
+            <div class="gauge_style1">
+                <canvas id="linear-gauge-0"></canvas>
+                <canvas id="linear-gauge-1"></canvas>
+                <canvas id="linear-gauge-2"></canvas>
+            </div>
+
+        </li>-->
+        <li style="background: #373737">
+            <div class="first">
+                <div class="container2">
+                    <div>
+                        <button class="custom-btn btn-7" onclick="fkpage.goToPrevSlide();">Индикаторы</button>
+                    </div>
+                    <button class="custom-btn btn-7" onclick="fkpage.goToNextSlide();">Индикаторы</button>
+                </div>
+            </div>
+            <div class="container3">
+            <div>
+                <div id="Iframename" class="Iframename"></div>
+            </div>
+            
+            </div>
+            <div class="first">
+
+                <div class="container">
+                
+
+                    <div class="item">
+                    </div>
+
+                    Данные за:
+                    <input type="text" id="DateTextBox" placeholder=" Выбрать День"
+                        style="font-size:16px; font-family: 'Lato', sans-serif;">
+                    <button id="btn1" class="custom-btn btn-7">
+                        Получить
+                    </button>
+
+
+
+
+                    Данные за:
+                    <input type="text" id="range_example_1_start" placeholder=" Выбрать начало"
+                        style="font-size:16px; font-family: 'Lato', sans-serif;">
+                    <input type="text" id="range_example_1_end" placeholder=" Выбрать конца"
+                        style="font-size:16px; font-family: 'Lato', sans-serif;">
+                    <button id="btn5" class="custom-btn btn-7">
+                        Получить
+                    </button>
+                    <div><button id="btn4" class="custom-btn btn-7">
+                        Текущее значение
+                    </button></div>
+                </div>
+
+
+                <div id="overlay">
+                    <div class="cv-spinner">
+                        <span class="spinner"></span>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+            <style type="text/css">
+                #maket {
+                    font-size: 16px;
+                    font-family: 'Lato', sans-serif;
+                    width: 100%;
+                    /* Ширина всей таблицы */
+                    height: 100%;
+                    background: #373737;
+                }
+
+                TD {
+                    font-size: 16px;
+                    font-family: 'Lato', sans-serif;
+                    padding: 5px;
+                    background: #373737;
+                    /* Поля вокруг ячеек */
+                }
+
+                TD#leftcol {
+                    font-size: 16px;
+                    font-family: 'Lato', sans-serif;
+                    width: 100px;
+                    /* Ширина левой колонки */
+                    background: #373737;
+                    /* Цвет фона левой колонки */
+                    border: 1px dashed #000;
+                    /* Параметры линии */
+                }
+
+                TD#rightcol {
+                    font-size: 16px;
+                    font-family: 'Lato', sans-serif;
+                    background: #373737;
+                    border: 1px dashed #000;
+                    /* Цвет фона правой колонки */
+                }
+            </style>
+
+
+            <div class="contain">
+
+                <table cellspacing="0" id="maket">
+                    <tr>
+                        <td id="leftcol">
+                            <div id="label1"></div>
+                        </td>
+                        <td id="rightcol">
+                            <div id="variable11"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="leftcol">
+                            <div id="label2"></div>
+                        </td>
+
+                        <td id="rightcol">
+                            <div id="variable22"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="leftcol">
+                            <div id="label3"></div>
+                        </td>
+
+                        <td id="rightcol">
+                            <div id="variable33"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <style>
+                #overlay {
+                    position: fixed;
+                    padding-left: 0 auto;
+                    padding-top: 19.7%;
+                    z-index: 100;
+                    width: 100%;
+                    height: 100%;
+                    display: none;
+                    background: #373737;
+                }
+
+                .cv-spinner {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: middle;
+                }
+
+                .spinner {
+                    width: 40px;
+                    height: 40px;
+                    border: 4px #ddd solid;
+                    border-top: 4px rgba(251, 75, 2, 1) solid;
+                    border-radius: 50%;
+                    animation: sp-anime 0.8s infinite linear;
+                }
+
+                @keyframes sp-anime {
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                .is-hide {
+                    display: none;
+                }
+            </style>
+            <div class="block_chart">
+                <canvas id="myChart" class="chart"></canvas>
+            </div>
+        </li>
+
+    </ul>
+
+
+
+</body>
+
+<script type="text/javascript">
+    var fkpage, cindex = 37;
+    function shownewts() {
+        if (cindex < 0) cindex = 37;
+        var tmp = fkpage.setSlideMode(cindex);
+        fkpage.goToNextSlide(); //下一页
+        cindex--;
+    }
+
+    $(document).ready(function () {
+        fkpage = $('.myfkpage').FKPageTransitions();
+    });
+</script>
+
+
+
+<!--script>
+
+
+
+
+      
+//使用FKPageTransitions插件
+var testing = $('#pt-main').FKPageTransitions({
+  // 常规设置
+  mode: 25, //0淡入 1在右 2上下 .... 详情参考说明
+  slideSelector: '', //指定子元素的对象[一般不指定]
+  infiniteLoop: true, //是否循环
+  speed: 5000, //速度[毫秒]
+  easing: null, //动画曲线
+  //startSlide: 2, //开始页ID
+  slideZIndex: 50, //初始z-index数
+  responsive: true, //绑定resize事件
+  wrapperClass: 'fk-page-wrapper', //主框架类名
+
+  //鼠标设置
+  mouseWheel:true, //是否支持滚轮
+  wheelThreshold:2, //灵敏度阀值
+
+  // 触摸设置
+  swipeThreshold: 50, //灵敏度阀值
+  preventDefaultSwipeX: true, //左右拉
+  preventDefaultSwipeY: false, //上下拉
+
+  pagerunstat:false, //是否在翻页动画进行时禁止页面内元素动画渲染
+
+  // 回调设置
+  // 加载完成时回调
+  onSliderLoad: function(currentIndex){
+    alert('滑块完成加载。当前页码为：'+currentIndex+' ，单击“确定”按钮继续！');
+  },
+  // 在每动画过渡开始前回调
+  onSlideBefore: function(newIndex,oldIndex,newElement,oldElement){
+    console.log(index_obj);
+    alert('幻灯片动画效果过渡开始。要进入的页码为：'+newIndex+' 当前页码为：'+oldIndex+' 新页DOM对象输出在控制台！');
+  },
+  // 在每动画过渡结束后回调
+  onSlideAfter: function(newIndex,oldIndex,newElement,oldElement){
+    console.log(prev_obj);
+    alert('幻灯片动画效果过渡完毕。当前页码为：'+newIndex+' 之前页码为：'+oldIndex+' 当前页DOM对象输出在控制台！');
+  },
+  // 下一页时回调
+  onSlideNext: function(newIndex,oldIndex,newElement,oldElement){
+    console.log(prev_obj);
+    alert('你的操作是[下一页]。当前页码为：'+newIndex+' 之前页码为：'+oldIndex+' 当前页DOM对象输出在控制台！');
+  },
+  // 上一页时回调
+  onSlidePrev: function(newIndex,oldIndex,newElement,oldElement){
+    console.log(index_obj);
+    alert('你的操作是[上一页]。当前页码为：'+newIndex+' 之前页码为：'+oldIndex+' 当前页DOM对象输出在控制台！');
+  },
+  // 窗口发生变化时回调[responsive=true]
+  onSliderResize: function(currentIndex) {
+    //slider.settings.onSliderResize.call(el, slider.active.index);
+    console.log('页面大小有变化。当前页码为：'+currentIndex);
+  }
+});
+
+var cindex = 37;
+//myttttt动态设置新的翻页效果（0-37）
+function myttttt(){
+  if (cindex<0) cindex =37;
+  var tmp = testing.setSlideMode(cindex);
+  console.log('设置翻页效果ID为：'+tmp);
+  testing.goToNextSlide(); //下一页
+  cindex --;
+}
+console.log('查看FKPageTransitions对象：')
+console.log(testing);
+
+
+
+</script -->
+
+<SCRIPT>
+    var msg1 = (sessionStorage.getItem('data_from_server2'));
+    var msg2 = msg1.split(';');
+    //console.log(' label_graf_name1', label_graf_name1)
+    //console.log(' label_graf_name1', label_graf_name2)
+    //console.log(' label_graf_name1', label_graf_name3)
+    console.log(msg2);
+
+
+    function TIMEOUT_CHART() {
+
+
+        label_graf_name1 = String(msg2[2]);
+        label_graf_name2 = msg2[4];
+        label_graf_name3 = msg2[6];
+
+        console.log('label_graf_name2 ', label_graf_name2)
+        console.log('label_graf_name3 ', label_graf_name3)
+        if (label_graf_name1 != 'Температура') {
+            label_graf_name1 = 'Пусто';
+        }
+        if (label_graf_name2 != 'Влажность') {
+            label_graf_name2 = 'Пусто';
+        }
+        if (label_graf_name3 != 'WiFi dBm') {
+            label_graf_name3 = 'Пусто';
+        }
+
+        if (chart.data.datasets[0].label.length != 1) {
+            chart.data.datasets[0].label.pop()
+        }
+
+        if (chart.data.datasets[1].label.length != 1) {
+            chart.data.datasets[1].label.pop()
+        }
+
+        if (chart.data.datasets[2].label.length != 1) {
+            chart.data.datasets[2].label.pop()
+        }
+
+        document.getElementById("label1").innerHTML = label_graf_name1;
+        document.getElementById("label2").innerHTML = label_graf_name2;
+        document.getElementById("label3").innerHTML = label_graf_name3;
+
+        gauge_object_0.value = variable1 = msg2[1];
+        if (variable1 == "undefined") {
+            variable1 = "Пусто"
+        }
+
+        gauge_object_1.value = variable2 = msg2[3];
+        if (variable2 == "undefined") {
+            variable2 = "Пусто"
+        }
+
+
+        gauge_object_2.value = variable3 = msg2[5];
+        if (variable3 == "undefined") {
+            variable3 = "Пусто"
+        }
+
+        document.getElementById("variable22").innerHTML = variable2;
+        document.getElementById("variable11").innerHTML = variable1;
+        document.getElementById("variable33").innerHTML = variable3;
+
+    }
+    setTimeout(TIMEOUT_CHART, 10);
+</SCRIPT>
+<script>
+
+    sessionStorage.removeItem('data_from_server2');
+
+    function onRefresh(chart) {
+
+
+        var msg1 = (sessionStorage.getItem('data_from_server2'));
+        var msg2 = msg1.split(';');
+        //console.log(' label_graf_name1', label_graf_name1)
+        //console.log(' label_graf_name1', label_graf_name2)
+        //console.log(' label_graf_name1', label_graf_name3)
+        console.log(msg2);
+
+        chart.data.datasets[0].data.push({
+            x: Date.now(),
+            y: Number(msg2[1]),
+        });
+
+        chart.data.datasets[1].data.push({
+            x: Date.now(),
+            y: Number(msg2[3]),
+        });
+        chart.data.datasets[2].data.push({
+            x: Date.now(),
+            y: Number(msg2[5]),
+        });
+
+        function TIMEOUT_CHART() {
+
+
+            chart.data.datasets[0].label.pop();
+            chart.data.datasets[1].label.pop();
+            chart.data.datasets[2].label.pop();
+
+
+            label_graf_name1 = String(msg2[2]);
+            label_graf_name2 = msg2[4];
+            label_graf_name3 = msg2[6];
+
+            console.log('label_graf_name2 ', label_graf_name2)
+            console.log('label_graf_name3 ', label_graf_name3)
+            if (label_graf_name1 != 'Температура') {
+                label_graf_name1 = 'Пусто';
+            }
+            if (label_graf_name2 != 'Влажность') {
+                label_graf_name2 = 'Пусто';
+            }
+            if (label_graf_name3 != 'WiFi dBm') {
+                label_graf_name3 = 'Пусто';
+            }
+
+            chart.data.datasets[0].label.push(label_graf_name1);
+            chart.data.datasets[1].label.push(label_graf_name2);
+            chart.data.datasets[2].label.push(label_graf_name3);
+
+            if (chart.data.datasets[0].label.length != 1) {
+                chart.data.datasets[0].label.pop()
+            }
+
+            if (chart.data.datasets[1].label.length != 1) {
+                chart.data.datasets[1].label.pop()
+            }
+
+            if (chart.data.datasets[2].label.length != 1) {
+                chart.data.datasets[2].label.pop()
+            }
+
+            document.getElementById("label1").innerHTML = label_graf_name1;
+            document.getElementById("label2").innerHTML = label_graf_name2;
+            document.getElementById("label3").innerHTML = label_graf_name3;
+
+            gauge_object_0.value = variable1 = msg2[1];
+            if (variable1 == "undefined") {
+                variable1 = "Пусто"
+            }
+
+            gauge_object_1.value = variable2 = msg2[3];
+            if (variable2 == "undefined") {
+                variable2 = "Пусто"
+            }
+
+
+            gauge_object_2.value = variable3 = msg2[5];
+            if (variable3 == "undefined") {
+                variable3 = "Пусто"
+            }
+
+            document.getElementById("variable22").innerHTML = variable2;
+            document.getElementById("variable11").innerHTML = variable1;
+            document.getElementById("variable33").innerHTML = variable3;
+
+        }
+        setTimeout(TIMEOUT_CHART, 1);
+    }
+
+
+    const context5 = document.getElementById('myChart').getContext('2d');
+    var color = (sessionStorage.getItem('color'));
+    color = color.split(';');
+    var chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: String(color[3]),
+        grey: String(color[4]),
+    };
+    var data;
+    var cfg = sessionStorage.getItem('cfg_tree_node');
+    var cfg_data = cfg.split(';');
+    var label_graf_name;
+    var label_graf_name1;
+    var label_graf_name2;
+    var label_graf_name3;
+    var variable1;
+    var variable2;
+    var Iframename;
+    var alarm;
+    label_graf_name = cfg_data[1];
+    Iframename = cfg_data[1];
+    document.getElementById("Iframename").innerHTML = Iframename;
+    var color = Chart.helpers.color;
+
+
+    var myBarChart = new Chart(context5, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: [],
+                backgroundColor: color(chartColors.purple).alpha(0.5).rgbString(),
+                borderColor: chartColors.purple,
+                fill: false,
+                lineTension: 0,
+                borderDash: [],
+                data: []
+
+            }, {
+
+                label: [],
+                backgroundColor: color(chartColors.grey).alpha(0.5).rgbString(),
+                borderColor: chartColors.grey,
+                fill: false,
+                lineTension: 0,
+                borderDash: [],
+                data: [],
+
+            },
+            {
+                label: [],
+                backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+                borderColor: chartColors.red,
+                fill: false,
+                lineTension: 0,
+                borderDash: [],
+                data: [],
+
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: 'rgb(255, 255, 255)',
+                    }
+                },
+            },
+            scales: {
+                x: {
+                    type: 'realtime',
+                    title: {
+                        display: true,
+                        text: 'Время',
+                        color: '#FFFFFF',
+                        font: {
+                            family: 'Lato',
+                            size: 18,
+
+                        }
+                    },
+                    ticks: {
+                        color: '#FFFFFF',
+                    },
+                    grid: {
+                        display: true,
+                        drawBorder: true,
+                        drawOnChartArea: true,
+                        drawTicks: true,
+                        color: '#FFFFFF',
+                    },
+
+                    realtime: {
+                        duration: 20000,
+                        refresh: 1000,
+                        delay: 2000,
+                        onRefresh: onRefresh
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Значение',
+                        color: '#FFFFFF',
+                        font: {
+                            family: 'Lato',
+                            size: 18,
+
+
+                        }
+                    },
+                    ticks: {
+                        color: '#FFFFFF',
+                    },
+                    grid: {
+                        display: true,
+                        drawBorder: true,
+                        drawOnChartArea: true,
+                        drawTicks: true,
+                        color: '#FFFFFF',
+                    },
+                }
+            },
+            interaction: {
+                intersect: false
+            },
+        }
+
+    });
+
+
+    //day
+    $("#btn1").on("click", function () {
+
+        first = document.getElementById("DateTextBox").value;
+        var first_cfg = first.split(' ');
+        sessionStorage.setItem('dmy', ("day" + ';' + String(first_cfg[0]) + ';' + String(first_cfg[1]) + ';' + '00.00.00' + ';' + '00.00.00'));
+        jQuery(function ($) {
+            $(document).ajaxSend(function () {
+                $("#overlay").fadeIn(6200);
+            });
+            $.ajax({
+                type: 'GET',
+
+            }).done(function () {
+                setTimeout(function () {
+                    $("#overlay").fadeOut(!1);
+                }, 0.000000001);
+            });
+
+            if (myBarChart != null) {
+                myBarChart.destroy();
+            }
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var length = 0;
+            var new1;
+            var new2;
+            var i = 0;
+            const data = [];
+            const data2 = [];
+            const data3 = [];
+            const data4 = [];
+            const data5 = [];
+            const data6 = [];
+            const data7 = [];
+            const data8 = [];
+            const data9 = [];
+            const data10 = [];
+            var label1 = "";
+            var prev = 0;
+            var timeline = [];
+            var start = 0;
+            var datetime = 0;
+            var endtitle2;
+            var datagraph = [];
+            var length1 = [];
+            var time2 = [];
+            var datetime2 = [];
+            var num_graph;
+            var label_name1;
+            var label_name2;
+            var label_name3;
+            var labels;
+            window.onstorage = event => {
+                if (event.key == 'db-answer') {
+
+                    new1 = event.newValue;
+                    new2 = new1.split(';');
+                    // console.log('new2', new2);
+                    sessionStorage.removeItem('db-answer');
+
+                    prev = new2[3];
+
+                    datetime = String(new2[1]);
+                    time = datetime + ' ' + new2[2];
+                    endtitle = new2[7];
+                    endtitle2 = new2[9];
+                    num_graph = new2[5];
+
+                    datagraph += prev + ';';
+                    timeline += datetime + ' ' + time + ';';
+                    datetime2 += datetime + ';';
+                    time2 += time + ';';
+
+                    start++
+                    length = Number(new2[6]);
+                    if (endtitle2 == 'fist') {
+                        labels = new2[8] + ';';
+                    }
+                    else if (endtitle != 'end') {
+                        Graph(prev, time, datagraph, timeline, length, num_graph);
+                    }
+
+
+                }
+            }
+            function Graph(prev, time, datagraph, timeline, length, num_graph) {
+
+                datagraph = datagraph.split(';');
+                timeline = timeline.split(';');
+                time2 = time2.split(';');
+                datetime2 = datetime2.split(';');
+                //console.log('label1s = ', labels_all);
+                // console.log('length = ', length);
+                // console.log('datetime2 = ', datetime2);
+                // console.log('time = ', time);
+                // console.log('time = ', time);
+                //console.log('timeline = ', timeline);
+
+                if (length > 0 & num_graph == 0) {
+
+                    data.push({ x: time, y: prev });
+
+                    //console.log('prev = ', prev);
+                    //if (myBarChart) myBarChart.destroy();
+                }
+                else if (length > 0 & num_graph == 1) {
+                    data2.push({ x: time, y: prev });
+
+                }
+                else if (length > 0 & num_graph == 2) {
+                    data3.push({ x: time, y: prev });
+                }
+
+
+            }
+
+            myBarChart = new Chart(ctx, {
+
+                type: 'line',
+                data:
+                {
+                    datasets:
+                        [{
+                            label: 'Температура',
+                            backgroundColor: color(chartColors.grey).alpha(0.5).rgbString(),
+                            borderColor: chartColors.grey,
+                            fill: false,
+                            lineTension: 0,
+                            radius: 0,
+                            data: data,
+                        },
+                        {
+                            label: 'Влажность',
+                            backgroundColor: color(chartColors.purple).alpha(0.5).rgbString(),
+                            borderColor: chartColors.purple,
+                            fill: false,
+                            lineTension: 0,
+                            radius: 0,
+                            data: data2,
+                        },
+                        {
+                            label: 'WiFi dBm',
+                            backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+                            borderColor: chartColors.red,
+                            fill: false,
+                            lineTension: 0,
+                            radius: 0,
+                            data: data3,
+                        },
+
+                        ]
+                },
+                options:
+                {
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'rgb(255, 255, 255)'
+                            }
+                        },
+                        zoom: {
+                            pan: {
+                                enabled: true,
+                                mode: 'x',
+                                modifierKey: 'ctrl',
+                            },
+                            zoom: {
+                                drag: {
+                                    enabled: true
+                                },
+                                mode: 'x',
+                            },
+                        }
+                    },
+                    scales: {
+                        x: {
+                            x: {
+                                min: '2021-11-07 00:00:00',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Время',
+                                color: '#FFFFFF',
+                                font: {
+                                    family: 'Lato',
+                                    size: 18,
+                                }
+                            },
+                            ticks: {
+                                color: '#FFFFFF',
+                            },
+                            grid: {
+                                display: true,
+                                drawBorder: true,
+                                drawOnChartArea: true,
+                                drawTicks: true,
+                                color: '#FFFFFF',
+                            },
+
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Значение',
+                                color: '#FFFFFF',
+                                font: {
+                                    family: 'Lato',
+                                    size: 18,
+
+
+                                }
+                            },
+                            ticks: {
+                                color: '#FFFFFF',
+                            },
+                            grid: {
+                                display: true,
+                                drawBorder: true,
+                                drawOnChartArea: true,
+                                drawTicks: true,
+                                color: '#FFFFFF',
+                            },
+                            type: 'linear'
+                        },
+                    }
+                }
+
+            });
+            setTimeout(function () { myBarChart.update(); }, 6000);
+
+        });
+        // document.getElementById("DateTextBox").value = '';
+
+    });
+
+    //Now
+    $("#btn4").on("click", function () {
+        if (myBarChart != null) {
+            myBarChart.destroy();
+        }
+
+        sessionStorage.removeItem('data_from_server2');
+
+        function onRefresh(chart) {
+
+
+            var msg1 = (sessionStorage.getItem('data_from_server2'));
+            var msg2 = msg1.split(';');
+            //console.log(' label_graf_name1', label_graf_name1)
+            //console.log(' label_graf_name1', label_graf_name2)
+            //console.log(' label_graf_name1', label_graf_name3)
+            console.log(msg2);
+
+            chart.data.datasets[0].data.push({
+                x: Date.now(),
+                y: Number(msg2[1]),
+            });
+
+            chart.data.datasets[1].data.push({
+                x: Date.now(),
+                y: Number(msg2[3]),
+            });
+            chart.data.datasets[2].data.push({
+                x: Date.now(),
+                y: Number(msg2[5]),
+            });
+
+            function TIMEOUT_CHART() {
+
+
+                chart.data.datasets[0].label.pop();
+                chart.data.datasets[1].label.pop();
+                chart.data.datasets[2].label.pop();
+
+
+                label_graf_name1 = String(msg2[2]);
+                label_graf_name2 = msg2[4];
+                label_graf_name3 = msg2[6];
+
+                console.log('label_graf_name2 ', label_graf_name2)
+                console.log('label_graf_name3 ', label_graf_name3)
+                if (label_graf_name1 != 'Температура') {
+                    label_graf_name1 = 'Пусто';
+                }
+                if (label_graf_name2 != 'Влажность') {
+                    label_graf_name2 = 'Пусто';
+                }
+                if (label_graf_name3 != 'WiFi dBm') {
+                    label_graf_name3 = 'Пусто';
+                }
+
+                chart.data.datasets[0].label.push(label_graf_name1);
+                chart.data.datasets[1].label.push(label_graf_name2);
+                chart.data.datasets[2].label.push(label_graf_name3);
+
+                if (chart.data.datasets[0].label.length != 1) {
+                    chart.data.datasets[0].label.pop()
+                }
+
+                if (chart.data.datasets[1].label.length != 1) {
+                    chart.data.datasets[1].label.pop()
+                }
+
+                if (chart.data.datasets[2].label.length != 1) {
+                    chart.data.datasets[2].label.pop()
+                }
+
+                document.getElementById("label1").innerHTML = label_graf_name1;
+                document.getElementById("label2").innerHTML = label_graf_name2;
+                document.getElementById("label3").innerHTML = label_graf_name3;
+
+                gauge_object_0.value = variable1 = msg2[1];
+                if (variable1 == "undefined") {
+                    variable1 = "Пусто"
+                }
+
+                gauge_object_1.value = variable2 = msg2[3];
+                if (variable2 == "undefined") {
+                    variable2 = "Пусто"
+                }
+
+
+                gauge_object_2.value = variable3 = msg2[5];
+                if (variable3 == "undefined") {
+                    variable3 = "Пусто"
+                }
+
+                document.getElementById("variable22").innerHTML = variable2;
+                document.getElementById("variable11").innerHTML = variable1;
+                document.getElementById("variable33").innerHTML = variable3;
+
+            }
+            setTimeout(TIMEOUT_CHART, 1);
+        }
+
+
+
+
+        var context15 = document.getElementById('myChart').getContext('2d');
+        myBarChart = new Chart(context15, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: label_graf_name1,
+                    backgroundColor: color(chartColors.purple).alpha(0.5).rgbString(),
+                    borderColor: chartColors.purple,
+                    fill: false,
+                    lineTension: 0,
+                    borderDash: [],
+                    data: []
+
+                }, {
+
+                    label: label_graf_name2,
+                    backgroundColor: color(chartColors.grey).alpha(0.5).rgbString(),
+                    borderColor: chartColors.grey,
+                    fill: false,
+                    lineTension: 0,
+                    borderDash: [],
+                    data: [],
+
+                },
+                {
+
+                    label: label_graf_name3,
+                    backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+                    borderColor: chartColors.red,
+                    fill: false,
+                    lineTension: 0,
+                    borderDash: [],
+                    data: [],
+
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: 'rgb(255, 255, 255)'
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        type: 'realtime',
+                        title: {
+                            display: true,
+                            text: 'Время',
+                            color: '#FFFFFF',
+                            font: {
+                                family: 'Lato',
+                                size: 18,
+                            }
+                        },
+                        ticks: {
+                            color: '#FFFFFF',
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: true,
+                            drawOnChartArea: true,
+                            drawTicks: true,
+                            color: '#FFFFFF',
+                        },
+
+                        realtime: {
+                            duration: 20000,
+                            refresh: 1000,
+                            delay: 2000,
+                            onRefresh: onRefresh,
+
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Значение',
+                            color: '#FFFFFF',
+                            font: {
+                                family: 'Lato',
+                                size: 18,
+
+
+                            }
+                        },
+                        ticks: {
+                            color: '#FFFFFF',
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: true,
+                            drawOnChartArea: true,
+                            drawTicks: true,
+                            color: '#FFFFFF',
+                        },
+                    }
+                },
+                interaction: {
+                    intersect: false
+                },
+            }
+        });
+
+    });
+
+
+    //range
+    $("#btn5").on("click", function () {
+
+
+        //console.log('start', document.getElementById("range_example_1_start").value);
+        //console.log('end', document.getElementById("range_example_1_end").value);
+        first = document.getElementById("range_example_1_start").value;
+        var first_cfg = first.split(' ');
+        second = document.getElementById("range_example_1_end").value;
+        var second_cfg = second.split(' ');
+        sessionStorage.setItem('dmy', ("range" + ';' + String(first_cfg[0]) + ';' + String(second_cfg[0]) + ';' + String(first_cfg[1]) + ';' + String(second_cfg[1])));
+        jQuery(function ($) {
+            $(document).ajaxSend(function () {
+                $("#overlay").fadeIn(6200);
+            });
+            $.ajax({
+                type: 'GET',
+
+            }).done(function () {
+                setTimeout(function () {
+                    $("#overlay").fadeOut(!1);
+                }, 0.000000001);
+            });
+            if (myBarChart != null) {
+                myBarChart.destroy();
+            }
+            //var context1 = document.getElementById('myChart').getContext('2d');
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var length = 0;
+            var new1;
+            var new2;
+            var i = 0;
+            const data = [];
+            const data2 = [];
+            const data3 = [];
+            const data4 = [];
+            const data5 = [];
+            const data6 = [];
+            const data7 = [];
+            const data8 = [];
+            const data9 = [];
+            const data10 = [];
+            var prev = 0;
+            var timeline = [];
+            var start = 0;
+            var datetime = 0;
+            var datagraph = [];
+            var length1 = [];
+            var time2 = [];
+            var datetime2 = [];
+            var num_graph;
+            window.onstorage = event => {
+                if (event.key == 'db-answer') {
+
+                    new1 = event.newValue;
+                    new2 = new1.split(';');
+                    //console.log('new2', new2);
+                    sessionStorage.removeItem('db-answer');
+
+                    prev = new2[3];
+
+                    datetime = String(new2[1]);
+                    time = datetime + ' ' + new2[2];
+                    endtitle = new2[7];
+                    num_graph = new2[5];
+
+                    datagraph += prev + ';';
+                    timeline += datetime + ' ' + time + ';';
+                    datetime2 += datetime + ';';
+                    time2 += time + ';';
+
+                    start++
+                    length = Number(new2[6]);
+
+
+                    if (endtitle != 'end') {
+                        Graph(prev, time, datagraph, timeline, length, num_graph);
+                    }
+
+
+                }
+            }
+            function Graph(prev, time, datagraph, timeline, length, num_graph) {
+                datagraph = datagraph.split(';');
+                timeline = timeline.split(';');
+                time2 = time2.split(';');
+                datetime2 = datetime2.split(';');
+                console.log('length = ', length);
+                // console.log('datetime2 = ', datetime2);
+                // console.log('time = ', time);
+                console.log('time = ', time);
+                //console.log('timeline = ', timeline);
+
+
+                if (length > 0 & num_graph == 0) {
+
+                    data.push({ x: time, y: prev });
+
+                    //console.log('prev = ', prev);
+                    //if (myBarChart) myBarChart.destroy();
+                }
+                else if (length > 0 & num_graph == 1) {
+                    data2.push({ x: time, y: prev });
+                }
+                else if (length > 0 & num_graph == 2) {
+                    data3.push({ x: time, y: prev });
+                }
+
+            }
+
+
+            myBarChart = new Chart(ctx, {
+
+                type: 'line',
+                data:
+                {
+                    datasets:
+                        [{
+                            label: 'Температура',
+                            backgroundColor: color(chartColors.grey).alpha(0.5).rgbString(),
+                            borderColor: chartColors.grey,
+                            fill: false,
+                            lineTension: 0,
+                            radius: 0,
+                            data: data,
+                        },
+                        {
+                            label: 'Влажность',
+                            backgroundColor: color(chartColors.purple).alpha(0.5).rgbString(),
+                            borderColor: chartColors.purple,
+                            fill: false,
+                            lineTension: 0,
+                            radius: 0,
+                            data: data2,
+                        },
+                        {
+                            label: 'WiFi dBm',
+                            backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+                            borderColor: chartColors.red,
+                            fill: false,
+                            lineTension: 0,
+                            radius: 0,
+                            data: data3,
+                        }]
+                },
+                options:
+                {
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: 'rgb(255, 255, 255)'
+                            }
+                        },
+                        zoom: {
+                            pan: {
+                                enabled: true,
+                                mode: 'x',
+                                modifierKey: 'ctrl',
+                            },
+                            zoom: {
+                                drag: {
+                                    enabled: true
+                                },
+                                mode: 'x',
+                            },
+                        }
+                    },
+                    scales: {
+                        x: {
+                            x: {
+                                min: '2021-11-07 00:00:00',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Время',
+                                color: '#FFFFFF',
+                                font: {
+                                    family: 'Lato',
+                                    size: 18,
+                                }
+                            },
+                            ticks: {
+                                color: '#FFFFFF',
+                            },
+                            grid: {
+                                display: true,
+                                drawBorder: true,
+                                drawOnChartArea: true,
+                                drawTicks: true,
+                                color: '#FFFFFF',
+                            },
+
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Значение',
+                                color: '#FFFFFF',
+                                font: {
+                                    family: 'Lato',
+                                    size: 18,
+
+
+                                }
+                            },
+                            ticks: {
+                                color: '#FFFFFF',
+                            },
+                            grid: {
+                                display: true,
+                                drawBorder: true,
+                                drawOnChartArea: true,
+                                drawTicks: true,
+                                color: '#FFFFFF',
+                            },
+                            type: 'linear'
+                        },
+                    }
+                }
+
+            });
+            setTimeout(function () { myBarChart.update(); }, 6000);
+
+            document.getElementById("range_example_1_start").value = '';
+            document.getElementById("range_example_1_end").value = '';
+        });
+    });
+
+</script>
+
+<script src="./datepicker.js"></script>
+<script src="js/gauge pg 2.js"></script>
+<script src="js/gauge pg 3.js"></script>
+<script src="js/gauge pg 4.js"></script>
+<script src="js/gauge pg 1.js"></script>
+
+</html>

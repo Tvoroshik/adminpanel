@@ -1,0 +1,48 @@
+
+body {
+	height: 100%;	
+	width: 100%;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #fff;
+	background: #0ac2d2;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	text-align: center;
+}
+.sidenav {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+	opacity: 0;
+    overflow-x: hidden;
+    
+}
+.sidenav1 {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    overflow-x: hidden;
+	
+}
+.middle{
+	padding-top:10%;
+	text-align: center;
+	align-items: center;
+}
+.middle2{
+	padding-top: 5%;
+	text-align: center;
+	align-items: center;    
+}
+.middle3{
+	padding-top: 10%;
+	text-align: center;
+	align-items: center;
+}
