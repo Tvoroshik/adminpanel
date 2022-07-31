@@ -523,6 +523,29 @@
         .tree {
             background-color: #222b45;
         }
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0
+        }
+
+        .row-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            background-color: #181b22;
+            overflow: hidden;
+        }
+
+        .second-row {
+            flex-grow: 1;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 
 
@@ -536,8 +559,10 @@
                     </TD>
         </div>
         <TD width=90% align=left valign=top>
-            <IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=NO width=100% frameborder="0"
-                style="border: 5px solid #181b22"></IFRAME>
+            <div class="row-container">
+                <IFRAME ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=yes width=100% frameborder="0"
+                style="border: 5px solid #181b22" class="second-row"></IFRAME>
+              </div>
         </TD>
         </TR>
         </TABLE>
