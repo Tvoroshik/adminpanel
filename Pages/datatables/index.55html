@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background: #fff;
+    }
+  </style>
+
+  <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+
+  <link href="./css/editor/editor.bootstrap.css" rel="stylesheet">
+  <link href="./css/editor/editor.bootstrap4.css" rel="stylesheet">
+  <link href="./css/editor/editor.bootstrap5.css" rel="stylesheet">
+  <link href="./css/editor/editor.bulma.css" rel="stylesheet">
+  <link href="./css/editor/editor.dataTables.css" rel="stylesheet">
+  <link href="./css/editor/editor.foundation.css" rel="stylesheet">
+  <link href="./css/editor/editor.jqueryui.css" rel="stylesheet">
+  <link href="./css/editor/editor.semanticui.css" rel="stylesheet">
+
+
+
+  <script type="text/javascript" src="  https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="  https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="  https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+  <script type="text/javascript"
+    src="    https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+
+  <script type="text/javascript" src="./editor/dataTables.editor.js"></script>
+  <script type="text/javascript" src="./editor/editor.bootstrap.js"></script>
+  <script type="text/javascript" src="./editor/editor.bootstrap4.js"></script>
+  <script type="text/javascript" src="./editor/editor.bootstrap5.js"></script>
+  <script type="text/javascript" src="./editor/editor.bulma.js"></script>
+  <script type="text/javascript" src="./editor/editor.dataTables.js"></script>
+  <script type="text/javascript" src="./editor/editor.foundation.js"></script>
+  <script type="text/javascript" src="./editor/editor.jqueryui.js"></script>
+  <script type="text/javascript" src="./editor/editor.semanticui.js"></script>
+
+</head>
+
+
+<body>
+
+
+  <button id="addRow">Add new row</button>
+  <button id="button">Delete selected row</button>
+  <table id="example" class="display" style="width:100%"></table>
+  <script>
+
+    var dataSet = [];
+    var new1;
+    var new2;
+    var new1;
+    var new2;
+    var variable1;
+    var variable2;
+    var variable3;
+    var variable4;
+    var variable5;
+    var variable6;
+    var variable7;
+    var variable8;
+    var column1;
+    var column2;
+    var column3;
+    var column4;
+    var column5;
+    var column6;
+    var column7;
+    var column8;
+    var start = 0;
+    var datagraph = [];
+
+    window.onstorage = event => {
+      if (event.key == 'answ-tree') {
+
+        new1 = event.newValue;
+        new2 = new1.split(';');
+
+
+        console.log('new2', new2);
+        // console.log('new2[0]', new2[0]);
+        sessionStorage.removeItem('answ-tree');
+
+        datagraph += new2 + ';';
+        start++;
+        console.log('start', start);
+        variable1 = new2[0];
+        variable2 = new2[1];
+        variable3 = new2[2];
+        variable4 = new2[3];
+        variable4 = new2[4];
+        variable5 = new2[5];
+        variable6 = new2[6];
+        variable7 = new2[7];
+        variable8 = new2[8];
+
+        console.log('variable1', variable1);
+        //console.log('variable2', variable2);
+        //console.log('variable3', variable3);
+        //console.log('variable4', variable4);
+        //console.log('variable5', variable5);
+        //console.log('variable6', variable6);
+        console.log('variable7', variable7);
+        console.log('variable8', variable8);
+
+        if (variable8 == 'first') {
+          column1 = new2[0];
+          column2 = new2[1];
+          column3 = new2[2];
+          column4 = new2[3];
+          column5 = new2[4];
+          column6 = new2[5];
+          column7 = new2[6];
+          column8 = new2[7];
+          //console.log('column1', column1);
+          //console.log('column2', column2);
+          //console.log('column3', column3);
+          //console.log('column4', column4);
+          //console.log('column5', column5);
+          //console.log('column6', column6);
+          //console.log('column7', column7);
+          //console.log('column8', column8);
+        }
+        else if (start < 7) {
+          new2.pop();
+          dataSet.push(new2);
+
+          console.log('dataSet', dataSet);
+
+          $(document).ready(function () {
+
+            var t = $('#example').DataTable({
+              dom: "Bfrtip",
+              data: dataSet,
+              autoFill: true,
+              columns: [
+
+                { title: column1, className: 'dt-body-center' },
+                { title: column2, className: 'dt-body-center' },
+                { title: column3, className: 'dt-body-center' },
+                { title: column4, className: 'dt-body-center' },
+                { title: column5, className: 'dt-body-center' },
+                { title: column6, className: 'dt-body-center' },
+                { title: column7, className: 'dt-body-center' },
+                { title: column8, className: 'dt-body-center' },
+
+              ],
+
+              "bDestroy": true,
+
+              select: true,
+              language: {
+                "processing": "Подождите...",
+                "search": "Поиск:",
+                "lengthMenu": "Показать _MENU_ записей",
+                "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                "infoPostFix": "",
+                "loadingRecords": "Загрузка записей...",
+                "zeroRecords": "Записи отсутствуют.",
+                "emptyTable": "В таблице отсутствуют данные",
+                "paginate": {
+                  "first": "Первая",
+                  "previous": "Предыдущая",
+                  "next": "Следующая",
+                  "last": "Последняя"
+                },
+                "aria": {
+                  "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                  "sortDescending": ": активировать для сортировки столбца по убыванию"
+                }
+              },
+
+            });
+            var counter = 'Данные ';
+
+            $('#addRow').on('click', function () {
+              t.row.add([counter + '1', counter + '2', counter + '3', counter + '4', counter + '5', counter + '6', counter + '7', counter + '8']).draw(false);
+            });
+
+            $('#example tbody').on('click', 'tr', function () {
+
+              if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+              } else {
+                t.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+              }
+            });
+
+            $('#button').click(function () {
+              t.row('.selected').remove().draw(false);
+            });
+
+            $('#example tbody').on('click', 'tr', function () {
+              var data = table.row(this).data();
+              alert('You clicked on ' + data[1] + "'s row");
+            });
+          });
+
+          console.log('dataSet = ', dataSet);
+
+
+        }
+
+      }
+    }
+
+
+
+
+  </script>
+
+</body>
+
+</html>

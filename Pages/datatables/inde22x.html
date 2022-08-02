@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<link rel="stylesheet" href="css/style.css">-->
+  <style type="text/css">
+    body {
+      background: #fff;
+    }
+
+    table {
+      /*position: absolute; убрано для примера*/
+      width: 100px;
+      /* сделает ширину таблицы равной ширине блока контейнера, в котором она находится */
+      border-collapse: collapse;
+      border: 1px solid black;
+      /* границы ячеек первого ряда таблицы */
+      empty-cells: show;
+    }
+
+    th {
+      border: 2px solid black;
+      /* границы ячеек тела таблицы */
+      background-color: rgb(160, 221, 222);
+    }
+
+    td {
+      border: 1px solid black;
+      background-color: rgb(176, 222, 161);
+    }
+
+    table {
+      /* задаст фиксированную ширину для таблицы */
+      width: 900px;
+    }
+
+    select {
+      width: 100%;
+      height: 20px;
+      font-size: 10px;
+    }
+
+    input {
+      width: 90%;
+      height: 20px;
+      font-size: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <table class="table">
+    <thead id="tableHeader">
+      <!--ряд с ячейками заголовков-->
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <button type="button" onclick="addNewRow()">Добавить строку</button>
+  <button type="button" onclick="countRabbits()">Отправить</button>
+  <script>
+    const tableHeader = document.getElementById('tableHeader');
+    const tableBody = document.getElementById('tableBody');
+    const NO_DATA = "нет данных";
+
+    // блок данных
+    const jurnalRows = [
+      [0, '36', '36', '0', 'Птичник', ' ', 'f', 'Птичник', '0'],
+      [1, '37', '37', '36', 'Зона 1', 'admin/index', 'f', 'Птичник', '1'],
+      [2, '38', '38', '36', 'Зона 2', 'gauge/index', 'f', 'Птичник', '2'],
+      [3, '39', '39', '36', 'Зона 3', 'gauge/index', 'f', 'Птичник', '3'],
+      [4, '40', '40', '36', 'Зона 4', 'admin/datatables/index', 'f', 'Птичник', '4'],
+    ]
+    const lastNames = [
+      NO_DATA,
+      "Иванов",
+      "Петров",
+      "Cидоров"
+    ];
+    const models = [
+      NO_DATA,
+      "Жигули",
+      "Волга",
+      "Лада"
+    ];
+    const columns = [
+      { name: "№ п/п", source: null, className: "number" },
+      { name: "id", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Наследник", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Родитель", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Имя", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Путь", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Развернуть", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Организация", source: createInput('text'), dataSource: "", className: "listNumber" },
+      { name: "Очередность", source: createInput('text'), dataSource: "", className: "listNumber" },
+
+    ]
+   
+    let currentRow = -1;
+    let currentCol = -1;
+    let currentCell = null;
+    const indexOfSum = columns.indexOf(columns.find(e => e.className === "sum"));
+    const indexOfBegin = columns.indexOf(columns.find(e => e.className === "begin"));
+    const indexOfEnd = columns.indexOf(columns.find(e => e.className === "end"));
+  
+    function calulate(event) {
+      const cell = event.target;
+      if (cell.parentNode.className === "begin") {
+        jurnalRows[currentRow][indexOfSum] = jurnalRows[currentRow][indexOfEnd] - cell.value;
+      } else if (cell.parentNode.className === "end") {
+        jurnalRows[currentRow][indexOfSum] = cell.value - jurnalRows[currentRow][indexOfBegin];
+      }
+      tableBody.children[currentRow].children[indexOfSum].textContent = jurnalRows[currentRow][indexOfSum]
+    }
+
+    function createInput(type) {
+      const input = document.createElement('input');
+      input.setAttribute('type', type);
+      input.addEventListener('change', calulate, false);
+      return input;
+    }
+
+    function createSelect(list) {
+      const select = document.createElement('select');
+      select.cla
+      for (let i = 0; i < list.length; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = list[i];
+        select.appendChild(option);
+      }
+      return select;
+    }
+
+    const createCell = (text, className) => {
+      const cell = document.createElement('td');
+      cell.textContent = text
+      if (className) cell.className = className;
+      return cell;
+    }
+
+    const createHeader = () => {
+      const row = document.createDocumentFragment();
+      for (i = 0; i < columns.length; i++) {
+        const cell = createCell(columns[i].name, columns[i].className);
+        row.appendChild(cell);
+      }
+      return row;
+    }
+
+    const createRow = (rowData) => {
+      const row = document.createElement('tr');
+      for (i = 0; i < columns.length; i++) {
+        const cell = createCell(rowData[i], columns[i].className);
+        row.appendChild(cell);
+      }
+      return row
+    }
+
+    function addNewRow() {
+      const rowData = [jurnalRows.length + 1, ...Array(columns.length - 1).fill(NO_DATA)];
+      jurnalRows.push(rowData)
+      tableBody.appendChild(createRow(rowData))
+    }
+
+    function addRow(rowData) {
+      tableBody.appendChild(createRow(rowData))
+    }
+
+    const fillTable = () => {
+      tableHeader.appendChild(createHeader())
+      for (let i = 0; i < jurnalRows.length; i++) {
+        addRow(jurnalRows[i])
+      }
+      //addNewRow()
+    }
+
+    fillTable()
+
+    const showEditField = () => {
+      if (event.target.tagName !== 'TD') return;
+      const cell = event.target;
+      const column = columns.find(e => e.className === cell.className);
+      const index = columns.indexOf(column);
+      // запоминаем последний выбор в данных
+      if (currentCell && currentCol !== -1 && currentRow !== -1) {
+        if (Array.isArray(columns[currentCol].dataSource)) {
+          jurnalRows[currentRow][currentCol] = columns[currentCol].dataSource[+columns[currentCol].source.value];
+          currentCell.textContent = jurnalRows[currentRow][currentCol];
+        } else {
+          jurnalRows[currentRow][currentCol] = columns[currentCol].source.value;
+          currentCell.textContent = jurnalRows[currentRow][currentCol];
+        }
+      }
+      // переносим ячейку выбора
+      if (column.source) {
+        oldData = cell.innerHTML;
+        cell.innerHTML = "";
+        if (Array.isArray(column.dataSource)) {
+          column.source.value = `${column.dataSource.indexOf(oldData)}`;
+        } else {
+          column.source.value = oldData !== NO_DATA ? oldData : column.dataSource;
+        }
+        cell.appendChild(column.source)
+        currentCol = index;
+        currentRow = Array.prototype.indexOf.call(tableBody.children, cell.parentNode);
+        currentCell = cell;
+        console.table(jurnalRows);
+
+      }
+    }
+    tableBody.addEventListener('click', showEditField, false)
+    function countRabbits() {
+      //console.log('pp', jurnalRows);
+    sessionStorage.setItem('db-upd-tree', ("db-upd-tree" + ';' + String(jurnalRows[0]) + ';' + String(jurnalRows[1]) + ';' + String(jurnalRows[2]) + ';' + String(jurnalRows[3]) + ';' + String(jurnalRows[4]) + ';' + String(jurnalRows[5]) + ';' + String(jurnalRows[6]) + ';' + String(jurnalRows[7]) + ';' + String(jurnalRows[8]) + ';' + String(jurnalRows[9])));
+   
+  }
+
+    </script>
+</body>
+
+</html>
